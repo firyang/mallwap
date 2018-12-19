@@ -1,0 +1,37 @@
+body{
+    font-size: 14px;
+    height: 100%;
+}
+body,ul,ol,dl,li,dt,dd,p,h1,h2,h3,h4,h5,h6{ 
+    padding: 0;
+    margin: 0;
+    color: #555;
+    font-family: Arial, Helvetica, sans-serif, 'microsoftYaHei';    
+}
+
+ul,dl,ol{
+    list-style: none;
+}
+
+h1,h2{
+    font-weight: normal;
+}
+
+em{ font-style: normal; color: #4594C9 }
+
+a{
+    text-decoration: none;
+    color: #555;
+}
+.clear::after{
+    display: block;
+    content: '';
+    clear: both;
+}
+
+.block{
+    display: block!important;
+}
+.none{
+    display: none!important;
+}
