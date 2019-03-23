@@ -9,25 +9,7 @@
 <script>
   export default {
     props:{
-        currentNav:Number,
-        arr:Array,
-        obj:Object,
-        propE:{
-            type:Object,
-            default:function(){
-                return { msg: 'hello'}
-            }
-        }
-    },
-    data(){
-        return {
-          
-        }        
-    },
-    updated(){
-    //    console.log(this.arr) 
-    //    console.log(this.obj) 
-    //    console.log(this.propE) 
+        currentNav:Number
     },
     methods: {
         toPage(num){

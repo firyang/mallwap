@@ -1,7 +1,7 @@
 <template>
     <div class="main">
         <router-view></router-view>
-        <TabBar :currentNav="currentNav" :arr="arr" :obj="obj"></TabBar>
+        <TabBar :currentNav="currentNav"></TabBar>
     </div>    
 </template>
 <script>
@@ -11,12 +11,7 @@
     components:{ TabBar },
     data(){
         return {
-            currentNav: 1,
-            arr: [1,2,3],
-            obj:{
-                name:'jarrey',
-                age:'23'
-            }
+            currentNav: 1
         }        
     },
     beforeMount(){

@@ -37,7 +37,7 @@ module.exports = {
     // 端口号
     port: 8080,
     // 是否自动打开浏览器
-    autoOpenBrowser: true,    
+    autoOpenBrowser: true,
     assetsSubDirectory: 'static',
     // 编译发布的根目录，可配置为资源服务器域名或 CDN 域名
     assetsPublicPath: '/',

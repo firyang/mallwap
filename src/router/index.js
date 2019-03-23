@@ -11,6 +11,7 @@ import Member from '@/components/Member'
 import ConfirmOrder from '@/components/ConfirmOrder'
 import Details from '@/components/Details'
 import NotFound from '@/components/NotFound'
+import Demo from '@/components/demo/Demo'
 
 Vue.use(Router)
 
@@ -113,6 +114,14 @@ const router =  new Router({
       component: NotFound,
       meta:{
         title:'NotFound Page'
+      }
+    },
+    {
+      path: '/demo',
+      name: 'Demo',
+      component: Demo,
+      meta:{
+        title:'Demo Page'
       }
     }
   ]

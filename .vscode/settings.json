@@ -1,0 +1,24 @@
+{
+  "eslint.enable": false, // 是否开启检测
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    // "vue-html",
+    // "html",
+    // "vue",
+    {
+      "language": "vue-html",
+      "autoFix": false // 编辑vue-html，保存时是否根据eslint规则自动修复
+    },
+    {
+      "language": "html",
+      "autoFix": false
+    },
+    {
+      "language": "vue",
+      "autoFix": false
+    }
+  ],
+  "eslint.run": "onSave",
+  "eslint.autoFixOnSave": false, // 保存时是否根据eslint规则自动修复
+}

@@ -6,13 +6,26 @@ var utils = require('./utils')
 var config = require('../config')
 var vueLoaderConfig = require('./vue-loader.conf')
 
+// ------ 引入eslint ------------
+// const createLintingRule = () => ({
+//   test: /\.(js|vue)$/,
+//   loader: 'eslint-loader',
+//   enforce: 'pre',
+//   include: [resolve('src'), resolve('test')],
+//   options: {
+//     formatter: require('eslint-friendly-formatter'),
+//     emitWarning: !config.dev.showEslintErrorsInOverlay
+//   }
+// })
+// ------ 引入eslint end------------
+
 /**
  * 获得绝对路径
  * @method resolve
  * @param  {String} dir 相对于本文件的路径
  * @return {String}     绝对路径
  */
-function resolve (dir) {
+function resolve(dir) {
   return path.join(__dirname, '..', dir)
 }
 
@@ -42,6 +55,15 @@ module.exports = {
   },
   module: {
     rules: [
+      // {
+      //   test: /\.(js|vue)$/,
+      //   loader: 'eslint-loader',
+      //   enforce: 'pre',
+      //   include: [resolve('src'), resolve('test')],
+      //   options: {
+      //     formatter: require('eslint-friendly-formatter')
+      //   }
+      // },
       {
         // 处理 vue文件
         // https://github.com/vuejs/vue-loader
@@ -83,6 +105,8 @@ module.exports = {
           name: utils.assetsPath('fonts/[name].[hash:7].[ext]')
         }
       }
+      // ------ 引入eslint ------------
+      // ...(config.dev.useEslint ? [createLintingRule()] : [])
     ]
   }
 }
