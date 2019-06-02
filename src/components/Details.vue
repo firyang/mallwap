@@ -40,7 +40,7 @@
       <div>
         <!-- {{pro.details}} -->
         <p>
-          <img :src="require('../'+pic[0].lg)">
+          <img v-if="pic && pic.length>0" :src="require('../'+pic[0].lg)">
         </p>
         <p>商品名称：{{ pro.spu_name }}</p>
         <p>规格型号：{{ spec }}</p>
@@ -65,7 +65,7 @@
       <div class="content">
         <div class="speclist clear">
           <dl id="attr0" class="clear">
-            <dt>{{ skuattr[0].name }}</dt>
+            <dt>{{  (skuattr && skuattr.length>0) && skuattr[0].name }}</dt>
             <dd
               v-for="(a,idx) in attr0"
               :key="idx"
@@ -75,7 +75,7 @@
             >{{ a.value }}</dd>
           </dl>
           <dl id="attr1" class="clear">
-            <dt>{{ skuattr[1].name }}</dt>
+            <dt>{{  (skuattr && skuattr.length>1) && skuattr[1].name }}</dt>
             <dd
               v-for="(a,idx) in attr1"
               :key="idx"
@@ -131,7 +131,12 @@ export default {
     attr0: [], // 第一属性列表
     vid1: null, // 第二属性值ID
     attr1: [], // 第二属性列表
-    pro: null, // 商品信息
+    pro: {
+      sku_name: null,
+      price: null,
+      spu_name:null,
+      sku_no:null
+    }, // 商品信息
     pic: [], // 商品图片
     skuattr: null, // 商品属性标题
     skulist: null, // sku和属性对应列表

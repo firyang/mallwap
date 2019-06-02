@@ -12,10 +12,11 @@ import ConfirmOrder from '@/components/ConfirmOrder'
 import Details from '@/components/Details'
 import NotFound from '@/components/NotFound'
 import Demo from '@/components/demo/Demo'
+import Pager from '@/components/demo/Pager'
 
 Vue.use(Router)
 
-const router =  new Router({
+const router = new Router({
   routes: [
     {
       path: '',
@@ -25,32 +26,32 @@ const router =  new Router({
           path: '/',
           name: 'index',
           component: Index,
-          meta:{
-            title:'首页'
+          meta: {
+            title: '首页'
           }
         },
         {
           path: '/pro',
           name: 'products',
           component: Products,
-          meta:{
-            title:'产品中心'
+          meta: {
+            title: '产品中心'
           }
         },
         {
           path: '/pro/:cid',
           name: 'products-c',
           component: Products,
-          meta:{
-            title:'产品分类列表'
+          meta: {
+            title: '产品分类列表'
           }
         },
         {
           path: '/cart',
           name: 'cart',
           component: ShoppingCart,
-          meta:{
-            title:'购物车'
+          meta: {
+            title: '购物车'
           }
         },
         {
@@ -62,8 +63,8 @@ const router =  new Router({
           path: '/member',
           name: 'member',
           component: Member,
-          meta:{
-            title:'会员中心'
+          meta: {
+            title: '会员中心'
           }
         }
       ]
@@ -72,30 +73,30 @@ const router =  new Router({
       path: '/cforder',
       name: 'cforder',
       component: ConfirmOrder,
-      meta:{
-        title:'确认订单'
+      meta: {
+        title: '确认订单'
       }
     },
     {
       path: '/cforder/:id',
       name: 'buynow',
       component: ConfirmOrder,
-      meta:{
-        title:'确认订单'
+      meta: {
+        title: '确认订单'
       }
     },
     {
       path: '/details/:id',
       name: 'details',
       component: Details,
-      meta:{
-        title:'产品详情'
+      meta: {
+        title: '产品详情'
       },
-      beforeEnter(to,from,next){        
+      beforeEnter(to, from, next) {
         let path = from.fullPath;
-        if(['/','/pro','/cart','/cforder'].indexOf(path)!=-1){
-          localStorage.setItem("backPath",path);
-        }        
+        if (['/', '/pro', '/cart', '/cforder'].indexOf(path) != -1) {
+          localStorage.setItem("backPath", path);
+        }
         next();
       }
 
@@ -104,30 +105,38 @@ const router =  new Router({
       path: '/login',
       name: 'login',
       component: Login,
-      meta:{
-        title:'登录'
+      meta: {
+        title: '登录'
       }
     },
     {
       path: '*',
       name: 'notfound',
       component: NotFound,
-      meta:{
-        title:'NotFound Page'
+      meta: {
+        title: 'NotFound Page'
       }
     },
     {
       path: '/demo',
       name: 'Demo',
       component: Demo,
-      meta:{
-        title:'Demo Page'
+      meta: {
+        title: 'Demo Page'
+      }
+    },
+    {
+      path: '/pager',
+      name: 'Pager',
+      component: Pager,
+      meta: {
+        title: 'Pager Page'
       }
     }
   ]
 });
 
-router.beforeEach((to,from,next)=>{
+router.beforeEach((to, from, next) => {
   // to: Route: 即将要进入的目标, 路由对象
   // from: Route: 当前导航正要离开的路由
   // next: Function: 一定要调用该方法来 resolve 这个钩子. 执行效果依赖 next 方法的调用参数
@@ -135,32 +144,32 @@ router.beforeEach((to,from,next)=>{
   // 动态修改页面title
   document.title = to.meta.title;
 
-  const nextRoute = ['cart','cforder','buynow','member'];
+  const nextRoute = ['cart', 'cforder', 'buynow', 'member'];
 
-  store.dispatch('CheckLoginState').then(()=>{
+  store.dispatch('CheckLoginState').then(() => {
     // 未登录状态, 当路由到nextRoute指定页时, 跳转至login
-    if(nextRoute.indexOf(to.name) >= 0){
-      if(!store.getters.isLoggedIn){
+    if (nextRoute.indexOf(to.name) >= 0) {
+      if (!store.getters.isLoggedIn) {
         let url = '';
-        to.name=='buynow'?(url=from.fullPath):(url=to.fullPath);
+        to.name == 'buynow' ? (url = from.fullPath) : (url = to.fullPath);
         next({
           path: '/login',
-          query: {redirect: url} //// 将跳转的路由path作为参数，登录成功后跳转到该路由
+          query: { redirect: url } //// 将跳转的路由path作为参数，登录成功后跳转到该路由
         })
-      }else{
+      } else {
         next();
-      }  
-    }else{
+      }
+    } else {
       next();
     }
 
     // 已登录状态, 当路由到login时, 不进行跳转
-    if(to.name === 'login'){
-      if(store.getters.isLoggedIn){
+    if (to.name === 'login') {
+      if (store.getters.isLoggedIn) {
         router.push(from.fullPath);
       }
     }
-  });  
+  });
 });
 
 export default router;
